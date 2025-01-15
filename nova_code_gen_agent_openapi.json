@@ -1,0 +1,46 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Agent AWS API",
+        "version": "1.0.0",
+        "description": "API to invoke a Nova micro model to write code for the given problem statement."
+    },
+    "paths": {
+        "/gen_code": {
+            "get": {
+                "summary": "Generate code for the given problem statement",
+                "description": "Write code for the given problem statement. The API takes in the problem statement and replies with a Python 3 solution to the below problem. Make sure to wrap your code in '```python' and '```' Markdown delimiters, and include exactly one block of code with the entire solution. Just return the code, do not provide any explanation.",
+                "operationId": "genCode",
+                "parameters": [
+                    {
+                        "name": "query",
+                        "in": "path",
+                        "description": "Customer query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Code for the requested problem statement",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string",
+                                            "description": "Code for the requested problem statement"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
